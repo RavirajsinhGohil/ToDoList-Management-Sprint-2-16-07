@@ -1,0 +1,30 @@
+<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+        <form id="addTeamMembersForm">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Team Members</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <select class="form-control"
+                        data-bind="value: addLeaveData.availableOnPhone, options: addTeamMembersData.teamMembers, optionsValue: 'id', optionsText: 'name'"
+                        aria-label="Priority"></select> 
+                    <label for="pMAssignedTo">Team Member</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select multiple class="form-control"
+                        data-bind="value: addLeaveData.availableOnPhone, options: availableOnPhoneOptions, optionsValue: 'id', optionsText: 'name'"
+                        aria-label="Priority"></select> 
+                    <label for="pMAssignedTo">Not Assigned Members*</label>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center px-0">
+                <button type="submit" class="btn navbar-color text-white btn-secondary">Save</button>
+                <button type="button" class="btn cancel-btn-color ms-1 btn-outline-secondary"
+                    data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

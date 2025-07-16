@@ -1,0 +1,44 @@
+@using ToDoListManagement.Entity.Constants
+@using ToDoListManagement.Entity.ViewModel
+@{
+    ViewData["Title"] = "Manage Team";
+    bool canAddEdit = GetPermissionService.HasPermission(User, Constants.ManageTeamModule, Constants.CanAddEdit);
+    bool canDelete = GetPermissionService.HasPermission(User, Constants.ManageTeamModule, Constants.CanDelete);
+}
+
+<div class="container-fluid">
+    <section class="content-header my-3">
+        <div class="d-flex justify-content-between">
+            <h2>Manage Team</h2>
+            @if (canAddEdit)
+            {
+                <div>
+                    <button class="btn btn-secondary text-white" id="addTaskButton" data-bind="click: openAddTeamMembersModal">
+                        <span class="fw-bold">+</span> Add Members
+                    </button>
+                </div>
+            }
+        </div>
+    </section>
+    <div class="card">
+        <div class="card-body">
+            <div id="leaveListContainer" class="w-100 mb-3">
+                <partial name="_TeamMembersList" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Team Members Modal -->
+<div class="modal fade" id="addTeamMembersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_AddTeamMembersModal" model="new TeamViewModel()" />
+</div>
+
+<script src="~/js/Team.js"></script>
+<script>
+    window.TeamPermissions = {
+        canAddEdit: @canAddEdit.ToString().ToLower(),
+        canDelete: @canDelete.ToString().ToLower()
+    };
+</script>
+<script src="~/js/TeamView.js"></script>
