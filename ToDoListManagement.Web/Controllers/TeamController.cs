@@ -58,7 +58,6 @@ public class TeamController : BaseController
     public async Task<IActionResult> GetNotAssignedMembers()
     {
         List<EmployeeViewModel>? data = await _teamService.GetNotAssignedMembersAsync();
-
         return Json(data);
     }
 

@@ -97,6 +97,8 @@ $(document).ready(function () {
 
     initializeDataTable("#teamMembersTable", "/Team/GetAssignedMembers", columns);
 
+
+
     viewModel = new TeamViewModel();
     ko.applyBindings(viewModel);
     ko.validation.init({
@@ -150,8 +152,18 @@ $(document).ready(function () {
     initializeDataTable("#notAssignedMembersTable", "/Team/GetNotAssignedMembers", notAssignedMembersColumns);
 
     $('#addTeamMembersModal').on('shown.bs.modal', function () {
-        const table = $('#notAssignedMembersTable').DataTable();
-        table.columns.adjust().draw();
+        const $select = $('#notAssignedMembersSelect');
+
+        // Destroy previous select2 if already initialized
+        if ($select.hasClass("select2-hidden-accessible")) {
+            $select.select2('destroy');
+        }
+
+        // Now initialize fresh select2
+        $select.select2({
+            placeholder: 'Select User(s)',
+            width: '100%'
+        });
     });
 });
 

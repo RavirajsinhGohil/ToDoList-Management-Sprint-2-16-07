@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
         <form id="addTeamMembersForm">
@@ -9,15 +9,22 @@
             <div class="modal-body">
                 <div class="form-floating mb-3">
                     <select class="form-control"
-                        data-bind="value: addLeaveData.availableOnPhone, options: addTeamMembersData.teamMembers, optionsValue: 'id', optionsText: 'name'"
-                        aria-label="Priority"></select> 
+                        data-bind="value: addTeamMembersData.teamMember, options: addTeamMembersData.teamMembers, 
+                                       optionsValue: 'userId', optionsText: 'name', optionsCaption: 'Select a Team Member'">
+                    </select>
                     <label for="pMAssignedTo">Team Member</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <select multiple class="form-control"
-                        data-bind="value: addLeaveData.availableOnPhone, options: availableOnPhoneOptions, optionsValue: 'id', optionsText: 'name'"
-                        aria-label="Priority"></select> 
-                    <label for="pMAssignedTo">Not Assigned Members*</label>
+                <div class="form-group">
+                    <label for="notAssignedMembersSelect">Not Assigned Members*</label>
+                    <select id="notAssignedMembersSelect" name="selectedNotAssignedMembers" class="form-control"
+                        multiple>
+                    </select>
+                </div>
+
+                <div>
+                    <ul data-bind="foreach: addTeamMembersData.notAssignedMembers">
+                        <li data-bind="text: $data.name"></li>
+                    </ul>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center px-0">

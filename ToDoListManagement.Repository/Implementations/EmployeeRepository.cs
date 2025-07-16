@@ -122,8 +122,6 @@ public class EmployeeRepository : IEmployeeRepository
         return await _context.Users
                     .Where(u => u.RoleId != 1 && !u.IsDeleted && !_context.TeamUserMappings.Any(tum => tum.TeamManagerId == u.UserId && !tum.IsDeleted))
                     .Include(u => u.Role).ToListAsync();
-
-        
     }
 
 }
